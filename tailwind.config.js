@@ -4,9 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream:  { DEFAULT: '#FAF7F2', dark: '#F0EBE3' },
-        nodo:   { DEFAULT: '#F26522', light: '#FF7A30', dark: '#D4551A' },
-        dark:   { DEFAULT: '#1A1209', 800: '#2A1F0F', 700: '#3D2E18' },
+        cream: {
+          DEFAULT: '#FDF0E4',
+          dark:    '#F5E6D6',
+        },
+        nodo: {
+          DEFAULT: '#E8643C',
+          light:   '#F07050',
+          dark:    '#C8502C',
+        },
+        dark: {
+          DEFAULT: '#1A0D06',
+          800:     '#2A1A0E',
+          700:     '#3D2A18',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
