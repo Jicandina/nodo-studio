@@ -40,12 +40,10 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right — Logo orb */}
+          {/* Right — Logo mark */}
           <div className="shrink-0">
-            <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full bg-nodo flex items-center justify-center shadow-2xl shadow-nodo/30">
-              <span className="text-white font-black text-[160px] leading-none select-none" style={{ fontFamily: 'Inter' }}>
-                N
-              </span>
+            <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full bg-nodo flex items-center justify-center shadow-2xl shadow-nodo/30 p-10">
+              <img src="/logo-mark.png" alt="Nodo Studio" className="w-full h-full object-contain" />
             </div>
           </div>
 

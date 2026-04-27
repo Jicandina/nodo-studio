@@ -29,12 +29,7 @@ export default function Header() {
     }`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-dark rounded-lg flex items-center justify-center">
-            <span className="text-white font-black text-sm">N</span>
-          </div>
-          <span className="font-bold text-dark text-base tracking-tight">nodostudio</span>
-        </div>
+        <img src="/logo-horizontal.png" alt="Nodo Studio" className="h-8 w-auto" />
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">

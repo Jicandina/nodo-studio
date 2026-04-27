@@ -9,12 +9,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-nodo rounded-lg flex items-center justify-center">
-                <span className="text-white font-black text-sm">N</span>
-              </div>
-              <span className="font-bold text-white text-base tracking-tight">nodostudio</span>
-            </div>
+            <img src="/logo-horizontal.png" alt="Nodo Studio" className="h-8 w-auto mb-3 brightness-0 invert" />
             <p className="text-white/30 text-sm">Agencia digital · Venezuela · 2026</p>
           </div>
 
