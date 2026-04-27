@@ -801,6 +801,8 @@ function Contacto() {
   const [sent, setSent] = React.useState(false);
   const submit = e => {
     e.preventDefault();
+    const text = `Hola Nodo Studio! 👋\n\nSoy *${form.nombre}*\nNegocio: ${form.negocio}\nWhatsApp: ${form.whatsapp}\n\n${form.mensaje}`;
+    window.open(`https://wa.me/584242677904?text=${encodeURIComponent(text)}`, '_blank');
     setSent(true);
     setTimeout(() => setSent(false), 4000);
   };
@@ -859,10 +861,10 @@ function Contacto() {
     }
   }, [{
     k: "WhatsApp directo",
-    v: "+58 414 555 0184"
+    v: "+58 424 267 7904"
   }, {
     k: "Correo",
-    v: "hola@nodo.studio"
+    v: "nodostudio.ven@gmail.com"
   }, {
     k: "Oficina",
     v: "Caracas · Maracaibo · remoto"
