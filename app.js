@@ -9,6 +9,39 @@ const C_LINE = "#1A0F0815";
 const fontDisplay = "'Space Grotesk', system-ui, sans-serif";
 const fontMono = "'JetBrains Mono', ui-monospace, monospace";
 
+// Hook: scroll reveal animation
+function useReveal() {
+  const ref = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); obs.disconnect(); }
+    }, { threshold: 0.12 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, visible];
+}
+
+// Inject global CSS for animations
+(function() {
+  if (document.getElementById('nodo-anim')) return;
+  const s = document.createElement('style');
+  s.id = 'nodo-anim';
+  s.textContent = `
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    @keyframes wa-pulse { 0%,100%{box-shadow:0 0 0 0 #25D36640} 50%{box-shadow:0 0 0 12px #25D36600} }
+    .wa-btn { animation: wa-pulse 2.5s infinite; }
+  `;
+  document.head.appendChild(s);
+})();
+
 // Hook: viewport breakpoint
 function useViewport() {
   const get = () => {
@@ -1133,6 +1166,53 @@ function Footer() {
     }
   }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 Nodo Studio \xB7 Hecho en Venezuela"), /*#__PURE__*/React.createElement("span", null, "v2.0 \xB7 orange futurist"))));
 }
+function WhatsAppFloat() {
+  const [show, setShow] = React.useState(false);
+  React.useEffect(() => {
+    const fn = () => setShow(window.scrollY > 300);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  if (!show) return null;
+  return /*#__PURE__*/React.createElement("a", {
+    href: "https://wa.me/584242677904?text=Hola%20Nodo%20Studio!%20Quiero%20saber%20m%C3%A1s%20sobre%20sus%20servicios.",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "wa-btn",
+    title: "Escríbenos por WhatsApp",
+    style: {
+      position: "fixed",
+      bottom: 28,
+      right: 24,
+      zIndex: 999,
+      width: 56,
+      height: 56,
+      borderRadius: "50%",
+      background: "#25D366",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 4px 20px #25D36655",
+      textDecoration: "none",
+      transition: "transform 0.2s"
+    },
+    onMouseEnter: e => e.currentTarget.style.transform = "scale(1.1)",
+    onMouseLeave: e => e.currentTarget.style.transform = "scale(1)"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: 28, height: 28, viewBox: "0 0 32 32", fill: "white"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.5L4 29l7.75-1.813A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm5.894 16.916c-.244.687-1.42 1.31-1.963 1.375-.496.06-1.12.085-1.806-.114-.416-.122-.95-.285-1.633-.56-2.87-1.18-4.74-4.08-4.884-4.27-.143-.19-1.162-1.547-1.162-2.95 0-1.405.736-2.097 1-2.376.262-.28.572-.35.762-.35h.546c.175 0 .413-.066.646.493.244.578.828 2.02.9 2.166.073.147.12.32.023.512-.098.19-.147.308-.29.473-.143.165-.3.37-.43.497-.144.14-.293.29-.126.568.166.278.74 1.22 1.588 1.975 1.09.972 2.01 1.273 2.29 1.42.28.147.442.123.606-.074.165-.196.703-.82.89-1.1.187-.28.374-.234.632-.14.258.093 1.64.774 1.92.915.28.14.466.21.535.325.07.114.07.662-.174 1.35z"
+  })));
+}
+
+function RevealSection({ children, delay }) {
+  const [ref, visible] = useReveal();
+  return /*#__PURE__*/React.createElement("div", {
+    ref,
+    className: `reveal${visible ? ' visible' : ''}${delay ? ` reveal-delay-${delay}` : ''}`
+  }, children);
+}
+
 function Landing() {
   return /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1141,6 +1221,15 @@ function Landing() {
       minHeight: "100vh",
       overflowX: "hidden"
     }
-  }, /*#__PURE__*/React.createElement(NavBar, null), /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Servicios, null), /*#__PURE__*/React.createElement(Casos, null), /*#__PURE__*/React.createElement(Proceso, null), /*#__PURE__*/React.createElement(Contacto, null), /*#__PURE__*/React.createElement(Footer, null));
+  },
+    /*#__PURE__*/React.createElement(NavBar, null),
+    /*#__PURE__*/React.createElement(Hero, null),
+    /*#__PURE__*/React.createElement(RevealSection, null, /*#__PURE__*/React.createElement(Servicios, null)),
+    /*#__PURE__*/React.createElement(RevealSection, null, /*#__PURE__*/React.createElement(Casos, null)),
+    /*#__PURE__*/React.createElement(RevealSection, null, /*#__PURE__*/React.createElement(Proceso, null)),
+    /*#__PURE__*/React.createElement(RevealSection, null, /*#__PURE__*/React.createElement(Contacto, null)),
+    /*#__PURE__*/React.createElement(RevealSection, null, /*#__PURE__*/React.createElement(Footer, null)),
+    /*#__PURE__*/React.createElement(WhatsAppFloat, null)
+  );
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(Landing, null));
