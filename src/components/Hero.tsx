@@ -5,7 +5,7 @@ export default function Hero() {
     document.querySelector('#casos')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section className="min-h-screen flex items-center bg-cream pt-20">
+    <section className="flex items-center bg-cream pt-24 pb-8">
       <div className="max-w-6xl mx-auto px-6 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-20">
 
