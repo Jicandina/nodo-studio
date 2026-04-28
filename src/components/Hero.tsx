@@ -1,9 +1,39 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const NodeCanvas = lazy(() => import('./NodeCanvas'));
 
+const WORDS = ['restaurante', 'clínica', 'inmobiliaria', 'barbería', 'negocio'];
+
+function useTypewriter() {
+  const [text, setText] = useState('');
+  const [wordIdx, setWordIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = WORDS[wordIdx];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!deleting && text === word) {
+      timeout = setTimeout(() => setDeleting(true), 1800);
+    } else if (deleting && text === '') {
+      setDeleting(false);
+      setWordIdx((i) => (i + 1) % WORDS.length);
+    } else if (deleting) {
+      timeout = setTimeout(() => setText(text.slice(0, -1)), 40);
+    } else {
+      timeout = setTimeout(() => setText(word.slice(0, text.length + 1)), 80);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text, deleting, wordIdx]);
+
+  return text;
+}
+
 export default function Hero() {
+  const typed = useTypewriter();
+
   const scrollToContact = () =>
     document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' });
   const scrollToCases = () =>
@@ -34,8 +64,13 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-6xl md:text-7xl font-black text-dark leading-[1.0] mb-6 tracking-tight"
             >
-              Tu negocio,<br />
-              <span className="text-nodo">conectado</span> al<br />
+              Tu{' '}
+              <span className="text-nodo">
+                {typed}
+                <span className="animate-pulse">|</span>
+              </span>
+              ,<br />
+              conectado al<br />
               mundo digital.
             </motion.h1>
 
