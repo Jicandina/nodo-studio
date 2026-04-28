@@ -33,7 +33,7 @@ export default function Header() {
         : 'bg-transparent'
     }`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <img src="/logo-horizontal.png" alt="Nodo Studio" className="h-14 w-auto dark:brightness-0 dark:invert" />
+        <img src="/logo-horizontal.png" alt="Nodo Studio" className="h-14 w-auto dark:invert" />
 
         <nav className="hidden md:flex items-center gap-8">
           {NAV.map((link) => (
