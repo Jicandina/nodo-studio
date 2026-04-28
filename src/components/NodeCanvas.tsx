@@ -17,11 +17,11 @@ function Node() {
       <pointLight position={[-3, -3, 2]} intensity={1.5} color="#FFF4E6" />
       <group ref={ref}>
         <mesh>
-          <icosahedronGeometry args={[1.4, 1]} />
+          <icosahedronGeometry args={[1.4, 0]} />
           <meshStandardMaterial color="#FF8A3D" transparent opacity={0.08} />
         </mesh>
         <mesh>
-          <icosahedronGeometry args={[1.4, 1]} />
+          <icosahedronGeometry args={[1.4, 0]} />
           <meshStandardMaterial color="#FF8A3D" wireframe />
         </mesh>
       </group>
@@ -31,8 +31,8 @@ function Node() {
 
 function FloatingDots() {
   const geo = useMemo(() => {
-    const arr = new Float32Array(40 * 3);
-    for (let i = 0; i < 40; i++) {
+    const arr = new Float32Array(20 * 3);
+    for (let i = 0; i < 20; i++) {
       const r = 2.2 + Math.random() * 1.8;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
@@ -46,7 +46,7 @@ function FloatingDots() {
   }, []);
 
   const mat = useMemo(() => new THREE.PointsMaterial({
-    size: 0.05,
+    size: 0.06,
     color: '#FF8A3D',
     transparent: true,
     opacity: 0.45,
@@ -59,7 +59,8 @@ export default function NodeCanvas() {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 42 }}
-      gl={{ alpha: true, antialias: true }}
+      gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}
+      dpr={Math.min(window.devicePixelRatio, 1.5)}
       style={{ background: 'transparent', width: '100%', height: '100%' }}
     >
       <Node />
