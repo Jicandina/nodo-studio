@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const CASES = [
   {
     num: '01',
@@ -50,19 +52,32 @@ export default function Cases() {
     <section id="casos" className="py-24 bg-dark">
       <div className="max-w-6xl mx-auto px-6">
 
-        <div className="mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16"
+        >
           <span className="text-xs font-bold tracking-widest uppercase text-nodo mb-3 block">02 · Casos reales</span>
           <h2 className="text-5xl md:text-6xl font-black text-white leading-tight tracking-tight">
             Negocios venezolanos<br />
             que ya están <span className="text-nodo">en línea.</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {CASES.map((c) => (
-            <div key={c.num} className={`rounded-2xl p-8 flex flex-col gap-4 ${
-              c.highlight ? 'bg-nodo' : 'bg-dark-800 border border-white/10'
-            }`}>
+          {CASES.map((c, i) => (
+            <motion.div
+              key={c.num}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className={`rounded-2xl p-8 flex flex-col gap-4 ${
+                c.highlight ? 'bg-nodo' : 'bg-dark-800 border border-white/10'
+              }`}
+            >
               <div className="flex items-center justify-between">
                 <p className={`text-xs font-bold tracking-widest uppercase ${c.highlight ? 'text-white/60' : 'text-white/30'}`}>
                   {c.type} · {c.city}
@@ -91,7 +106,7 @@ export default function Cases() {
                   Ver proyecto →
                 </a>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

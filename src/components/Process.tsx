@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const STEPS = [
   {
     num: '01',
@@ -21,22 +23,43 @@ const STEPS = [
   },
 ];
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+};
+
 export default function Process() {
   return (
     <section id="proceso" className="py-24 bg-cream">
       <div className="max-w-6xl mx-auto px-6">
 
-        <div className="mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16"
+        >
           <span className="section-label">03 · Cómo trabajamos</span>
           <h2 className="text-5xl md:text-6xl font-black text-dark leading-tight tracking-tight">
             De la idea<br />al cliente, en 4 pasos.
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-0">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-4 gap-0"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        >
           {STEPS.map((step, i) => (
-            <div key={step.num} className="relative">
-              {/* Connector line */}
+            <motion.div key={step.num} variants={item} className="relative">
               {i < STEPS.length - 1 && (
                 <div className="hidden md:block absolute top-4 left-1/2 w-full h-px bg-dark/15 z-0" />
               )}
@@ -48,9 +71,9 @@ export default function Process() {
                 <h3 className="text-lg font-black text-dark mb-2 leading-tight">{step.title}</h3>
                 <p className="text-sm text-dark/50 leading-relaxed">{step.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
