@@ -35,7 +35,7 @@ const item = {
 
 export default function Process() {
   return (
-    <section id="proceso" className="py-24 bg-cream">
+    <section id="proceso" className="py-24 bg-cream dark:bg-dark">
       <div className="max-w-6xl mx-auto px-6">
 
         <motion.div

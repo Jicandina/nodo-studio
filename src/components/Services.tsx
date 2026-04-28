@@ -36,7 +36,7 @@ const fadeUp = {
 
 export default function Services() {
   return (
-    <section id="servicios" className="py-24 bg-cream">
+    <section id="servicios" className="py-24 bg-cream dark:bg-dark">
       <div className="max-w-6xl mx-auto px-6">
 
         <motion.div

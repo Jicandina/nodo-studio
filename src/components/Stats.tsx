@@ -41,7 +41,7 @@ const item = {
 
 export default function Stats() {
   return (
-    <section className="bg-cream border-t border-b border-dark/10 py-14">
+    <section className="bg-cream dark:bg-dark-800 border-t border-b border-dark/10 dark:border-white/10 py-14">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-8"

@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#FF8A3D" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Nodo Studio" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQNXV4LBFE"></script>
     <script>
@@ -16,6 +25,8 @@
       gtag('js', new Date());
       gtag('config', 'G-TQNXV4LBFE');
     </script>
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Nodo Studio — Agencia Digital Venezuela" />
     <meta property="og:description" content="Hacemos sitios web, chatbots y herramientas para negocios venezolanos que quieren dejar de perder clientes por WhatsApp." />
     <meta property="og:type" content="website" />
@@ -25,6 +36,42 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Nodo Studio — Agencia Digital Venezuela" />
     <meta name="twitter:description" content="Sitios web, chatbots y herramientas para negocios venezolanos." />
+
+    <!-- Schema.org — Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Nodo Studio",
+      "description": "Agencia digital venezolana. Sitios web, chatbots de WhatsApp y herramientas digitales para negocios.",
+      "url": "https://nodo-studio.pages.dev",
+      "telephone": "+584242677904",
+      "email": "nodostudio.ven@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Caracas",
+        "addressCountry": "VE"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Venezuela"
+      },
+      "serviceType": ["Diseño web", "Chatbot WhatsApp", "Herramientas digitales"],
+      "priceRange": "$$",
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "sameAs": [
+        "https://www.instagram.com/nodostudio_ve"
+      ]
+    }
+    </script>
+
+    <!-- Dark mode: apply saved preference before render to avoid flash -->
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') document.documentElement.classList.add('dark');
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

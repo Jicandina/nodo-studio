@@ -40,7 +40,7 @@ export default function Hero() {
     document.querySelector('#casos')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section className="flex items-center bg-cream pt-24 pb-8">
+    <section className="flex items-center bg-cream dark:bg-dark pt-24 pb-8">
       <div className="max-w-6xl mx-auto px-6 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-20">
 
@@ -62,7 +62,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="text-6xl md:text-7xl font-black text-dark leading-[1.0] mb-6 tracking-tight"
+              className="text-6xl md:text-7xl font-black text-dark dark:text-cream leading-[1.0] mb-6 tracking-tight"
             >
               Tu{' '}
               <span className="text-nodo">

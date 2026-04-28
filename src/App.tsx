@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
@@ -12,14 +13,11 @@ import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ExitPopup from './components/ExitPopup';
 import LoadingScreen from './components/LoadingScreen';
 import ScrollProgress from './components/ScrollProgress';
+import NotFound from './components/NotFound';
 
-export default function App() {
+function MainPage() {
   return (
-    <div className="min-h-screen">
-      <LoadingScreen />
-      <ScrollProgress />
-      <FloatingWhatsApp />
-      <ExitPopup />
+    <div className="min-h-screen bg-cream dark:bg-dark transition-colors duration-300">
       <Header />
       <Hero />
       <Stats />
@@ -31,5 +29,20 @@ export default function App() {
       <Contact />
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <LoadingScreen />
+      <ScrollProgress />
+      <FloatingWhatsApp />
+      <ExitPopup />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
