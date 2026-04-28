@@ -3,17 +3,6 @@ import { motion } from 'framer-motion';
 const CASES = [
   {
     num: '01',
-    type: 'Inmobiliaria',
-    city: 'Caracas',
-    name: 'El Faro Inmobiliaria',
-    metric: '+∞',
-    metricLabel: 'presencia digital',
-    desc: 'Catálogo web con filtros, mapa interactivo, modo swipe y formulario directo a WhatsApp del asesor. De Instagram a plataforma propia.',
-    url: 'https://elfaro.pages.dev',
-    highlight: false,
-  },
-  {
-    num: '02',
     type: 'Restaurante',
     city: 'Caracas',
     name: 'La Esquina del Sabor',
@@ -24,7 +13,7 @@ const CASES = [
     highlight: true,
   },
   {
-    num: '03',
+    num: '02',
     type: 'Clínica',
     city: 'Mérida',
     name: 'Centro Médico Andes',
@@ -35,7 +24,7 @@ const CASES = [
     highlight: false,
   },
   {
-    num: '04',
+    num: '03',
     type: 'Barbería',
     city: 'Valencia',
     name: 'Brava Barber Co.',
@@ -66,7 +55,7 @@ export default function Cases() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {CASES.map((c, i) => (
             <motion.div
               key={c.num}
