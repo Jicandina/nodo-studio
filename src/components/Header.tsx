@@ -30,7 +30,7 @@ export default function Header() {
     }`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <img src="/logo-horizontal.png" alt="Nodo Studio" className="h-12 w-auto" />
+        <img src="/logo-horizontal.png" alt="Nodo Studio" className="h-14 w-auto" />
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
