@@ -7,14 +7,12 @@ import Process from './components/Process';
 import PriceCalculator from './components/PriceCalculator';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ExitPopup from './components/ExitPopup';
 
 export default function App() {
   return (
     <div className="min-h-screen">
-      <CustomCursor />
       <FloatingWhatsApp />
       <ExitPopup />
       <Header />
