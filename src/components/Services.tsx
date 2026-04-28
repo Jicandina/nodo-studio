@@ -36,7 +36,7 @@ const fadeUp = {
 
 export default function Services() {
   return (
-    <section id="servicios" className="py-24 bg-cream dark:bg-dark">
+    <section id="servicios" className="py-24 bg-cream dark:bg-dark transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6">
 
         <motion.div
@@ -48,11 +48,11 @@ export default function Services() {
         >
           <div>
             <span className="section-label">01 · Qué hacemos</span>
-            <h2 className="text-5xl md:text-6xl font-black text-dark leading-tight tracking-tight">
+            <h2 className="text-5xl md:text-6xl font-black text-dark dark:text-white leading-tight tracking-tight">
               Tres servicios.<br />Cero excusas.
             </h2>
           </div>
-          <p className="text-dark/50 max-w-xs text-base leading-relaxed">
+          <p className="text-dark/50 dark:text-white/40 max-w-xs text-base leading-relaxed">
             No vendemos paquetes inflados. Vendemos lo que tu negocio necesita para vender más mañana.
           </p>
         </motion.div>
@@ -70,10 +70,10 @@ export default function Services() {
               <TiltCard className={`rounded-2xl p-8 flex flex-col gap-6 h-full ${
                 s.highlight
                   ? 'bg-nodo text-white'
-                  : 'bg-cream-dark border border-dark/10'
+                  : 'bg-cream-dark dark:bg-dark-800 border border-dark/10 dark:border-white/10'
               }`}>
                 <div className="flex items-start justify-between">
-                  <p className={`text-xs font-bold tracking-widest uppercase ${s.highlight ? 'text-white/60' : 'text-dark/40'}`}>
+                  <p className={`text-xs font-bold tracking-widest uppercase ${s.highlight ? 'text-white/60' : 'text-dark/40 dark:text-white/30'}`}>
                     {s.num} · Servicio
                   </p>
                   <div className={`w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm ${
@@ -82,10 +82,10 @@ export default function Services() {
                 </div>
 
                 <div>
-                  <h3 className={`text-2xl font-black leading-tight mb-3 ${s.highlight ? 'text-white' : 'text-dark'}`}>
+                  <h3 className={`text-2xl font-black leading-tight mb-3 ${s.highlight ? 'text-white' : 'text-dark dark:text-white'}`}>
                     {s.title}
                   </h3>
-                  <p className={`text-sm leading-relaxed ${s.highlight ? 'text-white/70' : 'text-dark/60'}`}>
+                  <p className={`text-sm leading-relaxed ${s.highlight ? 'text-white/70' : 'text-dark/60 dark:text-white/50'}`}>
                     {s.desc}
                   </p>
                 </div>
@@ -93,7 +93,7 @@ export default function Services() {
                 <ul className="space-y-2 mt-auto">
                   {s.features.map((f) => (
                     <li key={f} className={`flex items-center gap-2 text-sm font-medium ${
-                      s.highlight ? 'text-white/80' : 'text-dark/70'
+                      s.highlight ? 'text-white/80' : 'text-dark/70 dark:text-white/60'
                     }`}>
                       <span className={`text-xs ${s.highlight ? 'text-white/50' : 'text-nodo'}`}>+</span>
                       {f}
