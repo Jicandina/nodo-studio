@@ -83,6 +83,41 @@ export const translations = {
         { title: 'Lanzamos y acompañamos', desc: 'Te capacitamos, dejamos todo documentado y seguimos disponibles 90 días.' },
       ],
     },
+    calculator: {
+      label: 'Herramienta · Estimado de precio',
+      heading1: '¿Cuánto cuesta',
+      heading2: 'tu proyecto?',
+      subtitle: 'Selecciona tu negocio y servicios para ver un estimado al instante.',
+      businessLabel: 'Tipo de negocio',
+      servicesLabel: 'Servicios que necesitas',
+      businesses: ['Restaurante', 'Clínica', 'Inmobiliaria', 'Barbería', 'Otro'],
+      services: [
+        { label: 'Sitio web',            desc: 'Landing o catálogo completo' },
+        { label: 'Chatbot WhatsApp',     desc: 'Atención automática 24/7'   },
+        { label: 'Herramienta a medida', desc: 'CRM, agenda, dashboard'     },
+      ],
+      selectedTag: '+ Seleccionado',
+      discount: 'Descuento de 15% por paquete aplicado automáticamente',
+      estimateFor: 'Estimado para',
+      finalNote: 'Precio final según alcance exacto. Aceptamos bolívares.',
+      ctaBtn: 'Cotizar exacto →',
+      emptyMsg: 'Selecciona tu negocio y al menos un servicio para ver el estimado',
+      waMsg: 'Hola%20Nodo%20Studio!%20Calculé%20mi%20proyecto%20y%20quiero%20una%20cotización%20exacta%20%F0%9F%91%8B',
+    },
+    faq: {
+      label: '05 · FAQ',
+      heading1: 'Preguntas',
+      heading2: 'frecuentes.',
+      subtitle: 'Si tienes alguna duda que no está aquí, escríbenos por WhatsApp.',
+      items: [
+        { q: '¿Cuánto tiempo tarda en estar listo mi proyecto?',         a: 'Un sitio web entre 1 y 3 semanas. Un chatbot de 3 a 7 días. Una herramienta a medida entre 2 y 6 semanas. El plazo exacto lo acordamos en la propuesta antes de empezar.' },
+        { q: '¿Aceptan pagos en bolívares?',                             a: 'Sí. Aceptamos bolívares a tasa del día, dólares en efectivo, Zelle, Binance y transferencias bancarias. Acordamos el método que más te convenga.' },
+        { q: '¿Qué pasa si no me gusta el resultado?',                   a: 'Trabajamos en rondas de revisión semanales para que veas el avance en vivo y no te lleves sorpresas. Si algo no te convence, lo corregimos. Siempre.' },
+        { q: '¿Necesito saber de tecnología para trabajar con ustedes?', a: 'Para nada. Tú nos cuentas qué quieres lograr con tu negocio y nosotros nos encargamos del resto. Sin términos técnicos, sin complicaciones.' },
+        { q: '¿Incluyen soporte después del lanzamiento?',               a: 'Sí. Los primeros 90 días estamos disponibles sin costo adicional para ajustes y soporte. Después ofrecemos planes de mantenimiento mensual si los necesitas.' },
+        { q: '¿Trabajan con negocios fuera de Caracas?',                 a: 'Sí, trabajamos 100% remoto. Tenemos clientes en Caracas, Mérida, Valencia y más. Todo el proceso es por videollamada y WhatsApp.' },
+      ],
+    },
     contact: {
       label: '04 · Hablemos',
       heading1: '¿Listos para',
@@ -96,10 +131,10 @@ export const translations = {
       successTitle: '¡Abriendo WhatsApp!',
       successDesc: 'Te respondemos en menos de 24 horas.',
       fields: {
-        name: { label: 'Tu nombre', placeholder: 'María García' },
-        business: { label: 'Tipo de negocio', placeholder: 'Restaurante, clínica...' },
-        phone: { label: 'WhatsApp', placeholder: '+58 414 000 0000' },
-        message: { label: 'Cuéntanos', placeholder: '¿Qué quieres lograr? ¿Qué te frena hoy?' },
+        name:     { label: 'Tu nombre',        placeholder: 'María García' },
+        business: { label: 'Tipo de negocio',  placeholder: 'Restaurante, clínica...' },
+        phone:    { label: 'WhatsApp',          placeholder: '+58 414 000 0000' },
+        message:  { label: 'Cuéntanos',         placeholder: '¿Qué quieres lograr? ¿Qué te frena hoy?' },
       },
       submitBtn: 'Enviar cotización →',
       waMessage: (name: string, business: string, phone: string, message: string) =>
@@ -199,6 +234,41 @@ export const translations = {
         { title: 'We launch & support',  desc: 'We train you, document everything and stay available for 90 days.' },
       ],
     },
+    calculator: {
+      label: 'Tool · Price Estimate',
+      heading1: 'How much does',
+      heading2: 'your project cost?',
+      subtitle: 'Select your business type and services to get an instant estimate.',
+      businessLabel: 'Business type',
+      servicesLabel: 'Services you need',
+      businesses: ['Restaurant', 'Clinic', 'Real Estate', 'Barbershop', 'Other'],
+      services: [
+        { label: 'Website',          desc: 'Landing page or full catalog' },
+        { label: 'WhatsApp Chatbot', desc: 'Automated 24/7 support'      },
+        { label: 'Custom tool',      desc: 'CRM, schedule, dashboard'    },
+      ],
+      selectedTag: '+ Selected',
+      discount: '15% package discount applied automatically',
+      estimateFor: 'Estimate for',
+      finalNote: 'Final price depends on exact scope. We accept bolivars.',
+      ctaBtn: 'Get exact quote →',
+      emptyMsg: 'Select your business type and at least one service to see the estimate',
+      waMsg: 'Hi%20Nodo%20Studio!%20I%20calculated%20my%20project%20and%20want%20an%20exact%20quote%20%F0%9F%91%8B',
+    },
+    faq: {
+      label: '05 · FAQ',
+      heading1: 'Frequently asked',
+      heading2: 'questions.',
+      subtitle: "If you have a question not covered here, reach out on WhatsApp.",
+      items: [
+        { q: 'How long does my project take?',                a: 'A website takes 1 to 3 weeks. A chatbot 3 to 7 days. A custom tool 2 to 6 weeks. The exact timeline is agreed in the proposal before we start.' },
+        { q: 'Do you accept payment in bolivars?',            a: 'Yes. We accept bolivars at the daily rate, cash dollars, Zelle, Binance and bank transfers. We agree on whatever method works best for you.' },
+        { q: "What if I don't like the result?",              a: "We work in weekly review rounds so you see progress live with no surprises. If something doesn't feel right, we fix it. Always." },
+        { q: 'Do I need to know about technology?',           a: "Not at all. You tell us what you want to achieve with your business and we handle the rest. No technical terms, no complications." },
+        { q: 'Do you include support after launch?',          a: 'Yes. The first 90 days we are available at no extra cost for adjustments and support. Afterward we offer monthly maintenance plans if needed.' },
+        { q: 'Do you work with businesses outside Caracas?',  a: 'Yes, we work 100% remotely. We have clients in Caracas, Mérida, Valencia and beyond. The entire process is by video call and WhatsApp.' },
+      ],
+    },
     contact: {
       label: '04 · Contact',
       heading1: 'Ready to',
@@ -212,10 +282,10 @@ export const translations = {
       successTitle: 'Opening WhatsApp!',
       successDesc: "We'll reply within 24 hours.",
       fields: {
-        name: { label: 'Your name', placeholder: 'John Smith' },
-        business: { label: 'Business type', placeholder: 'Restaurant, clinic...' },
-        phone: { label: 'WhatsApp', placeholder: '+1 305 000 0000' },
-        message: { label: 'Tell us', placeholder: "What do you want to achieve? What's holding you back?" },
+        name:     { label: 'Your name',      placeholder: 'John Smith' },
+        business: { label: 'Business type',  placeholder: 'Restaurant, clinic...' },
+        phone:    { label: 'WhatsApp',       placeholder: '+1 305 000 0000' },
+        message:  { label: 'Tell us',        placeholder: "What do you want to achieve? What's holding you back?" },
       },
       submitBtn: 'Send quote →',
       waMessage: (name: string, business: string, phone: string, message: string) =>
@@ -230,7 +300,7 @@ export const translations = {
       copyright: '© 2026 Nodo Studio. All rights reserved.',
     },
   },
-} as const;
+};
 
 export type Lang = 'es' | 'en';
 export type Translations = typeof translations.es;

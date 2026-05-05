@@ -1,32 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const FAQS = [
-  {
-    q: '¿Cuánto tiempo tarda en estar listo mi proyecto?',
-    a: 'Un sitio web entre 1 y 3 semanas. Un chatbot de 3 a 7 días. Una herramienta a medida entre 2 y 6 semanas. El plazo exacto lo acordamos en la propuesta antes de empezar.',
-  },
-  {
-    q: '¿Aceptan pagos en bolívares?',
-    a: 'Sí. Aceptamos bolívares a tasa del día, dólares en efectivo, Zelle, Binance y transferencias bancarias. Acordamos el método que más te convenga.',
-  },
-  {
-    q: '¿Qué pasa si no me gusta el resultado?',
-    a: 'Trabajamos en rondas de revisión semanales para que veas el avance en vivo y no te lleves sorpresas. Si algo no te convence, lo corregimos. Siempre.',
-  },
-  {
-    q: '¿Necesito saber de tecnología para trabajar con ustedes?',
-    a: 'Para nada. Tú nos cuentas qué quieres lograr con tu negocio y nosotros nos encargamos del resto. Sin términos técnicos, sin complicaciones.',
-  },
-  {
-    q: '¿Incluyen soporte después del lanzamiento?',
-    a: 'Sí. Los primeros 90 días estamos disponibles sin costo adicional para ajustes y soporte. Después ofrecemos planes de mantenimiento mensual si los necesitas.',
-  },
-  {
-    q: '¿Trabajan con negocios fuera de Caracas?',
-    a: 'Sí, trabajamos 100% remoto. Tenemos clientes en Caracas, Mérida, Valencia y más. Todo el proceso es por videollamada y WhatsApp.',
-  },
-];
+import { useLang } from '../context/LangContext';
 
 function Item({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -60,6 +34,9 @@ function Item({ q, a }: { q: string; a: string }) {
 }
 
 export default function FAQ() {
+  const { t } = useLang();
+  const f = t.faq;
+
   return (
     <section id="faq" className="py-24 bg-dark">
       <div className="max-w-6xl mx-auto px-6">
@@ -73,14 +50,12 @@ export default function FAQ() {
             className="lg:w-72 shrink-0"
           >
             <span className="text-xs font-bold tracking-widest uppercase text-nodo mb-3 block">
-              05 · FAQ
+              {f.label}
             </span>
             <h2 className="text-5xl font-black text-white leading-tight tracking-tight">
-              Preguntas<br />frecuentes.
+              {f.heading1}<br />{f.heading2}
             </h2>
-            <p className="text-white/40 mt-4 text-sm leading-relaxed">
-              Si tienes alguna duda que no está aquí, escríbenos por WhatsApp.
-            </p>
+            <p className="text-white/40 mt-4 text-sm leading-relaxed">{f.subtitle}</p>
           </motion.div>
 
           <motion.div
@@ -90,7 +65,7 @@ export default function FAQ() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex-1"
           >
-            {FAQS.map((faq) => (
+            {f.items.map((faq) => (
               <Item key={faq.q} q={faq.q} a={faq.a} />
             ))}
           </motion.div>

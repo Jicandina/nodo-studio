@@ -38,7 +38,7 @@ export default function Footer() {
                   +58 424 267 7904
                 </a>
                 <a href={`mailto:${EMAIL}`}
-                  className="block text-sm text-white/50 hover:text-white transition-colors">
+                  className="block text-sm text-white/50 hover:text-white transition-colors break-all">
                   {EMAIL}
                 </a>
               </div>

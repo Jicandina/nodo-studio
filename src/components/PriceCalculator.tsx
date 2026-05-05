@@ -1,33 +1,34 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLang } from '../context/LangContext';
 
-type Business = 'Restaurante' | 'Clínica' | 'Inmobiliaria' | 'Barbería' | 'Otro';
-type Service = 'web' | 'chatbot' | 'herramienta';
+type ServiceId = 'web' | 'chatbot' | 'herramienta';
 
-const BUSINESSES: Business[] = ['Restaurante', 'Clínica', 'Inmobiliaria', 'Barbería', 'Otro'];
-
-const SERVICES: { id: Service; label: string; desc: string; range: string; low: number; high: number }[] = [
-  { id: 'web',        label: 'Sitio web',           desc: 'Landing o catálogo completo', range: '$300–$800',    low: 300,  high: 800  },
-  { id: 'chatbot',    label: 'Chatbot WhatsApp',     desc: 'Atención automática 24/7',    range: '$200–$500',    low: 200,  high: 500  },
-  { id: 'herramienta', label: 'Herramienta a medida', desc: 'CRM, agenda, dashboard',     range: '$500–$1,500',  low: 500,  high: 1500 },
+const SERVICE_PRICES: { id: ServiceId; range: string; low: number; high: number }[] = [
+  { id: 'web',        range: '$300–$800',   low: 300,  high: 800  },
+  { id: 'chatbot',    range: '$200–$500',   low: 200,  high: 500  },
+  { id: 'herramienta', range: '$500–$1,500', low: 500, high: 1500 },
 ];
 
-const WA = 'https://wa.me/584242677904?text=Hola%20Nodo%20Studio!%20Calculé%20mi%20proyecto%20y%20quiero%20una%20cotización%20exacta%20%F0%9F%91%8B';
-
 export default function PriceCalculator() {
-  const [business, setBusiness] = useState<Business | null>(null);
-  const [selected, setSelected] = useState<Service[]>([]);
+  const { t } = useLang();
+  const c = t.calculator;
 
-  const toggle = (id: Service) =>
+  const [business, setBusiness] = useState<string | null>(null);
+  const [selected, setSelected] = useState<ServiceId[]>([]);
+
+  const toggle = (id: ServiceId) =>
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
     );
 
   const discount = selected.length >= 2 ? 0.15 : 0;
-  const totals = SERVICES.filter((s) => selected.includes(s.id));
+  const totals = SERVICE_PRICES.filter((s) => selected.includes(s.id));
   const low  = Math.round(totals.reduce((a, s) => a + s.low,  0) * (1 - discount));
   const high = Math.round(totals.reduce((a, s) => a + s.high, 0) * (1 - discount));
   const showResult = business !== null && selected.length > 0;
+
+  const waUrl = `https://wa.me/584242677904?text=${c.waMsg}`;
 
   return (
     <section id="calculadora" className="py-24 bg-dark">
@@ -41,14 +42,12 @@ export default function PriceCalculator() {
           className="mb-12"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-nodo mb-3 block">
-            Herramienta · Estimado de precio
+            {c.label}
           </span>
           <h2 className="text-5xl md:text-6xl font-black text-white leading-tight tracking-tight">
-            ¿Cuánto cuesta<br />tu proyecto?
+            {c.heading1}<br />{c.heading2}
           </h2>
-          <p className="text-white/40 mt-3 text-base">
-            Selecciona tu negocio y servicios para ver un estimado al instante.
-          </p>
+          <p className="text-white/40 mt-3 text-base">{c.subtitle}</p>
         </motion.div>
 
         {/* Business type */}
@@ -60,10 +59,10 @@ export default function PriceCalculator() {
           className="mb-8"
         >
           <p className="text-xs font-bold tracking-widest uppercase text-white/30 mb-3">
-            Tipo de negocio
+            {c.businessLabel}
           </p>
           <div className="flex flex-wrap gap-2">
-            {BUSINESSES.map((b) => (
+            {c.businesses.map((b) => (
               <button
                 key={b}
                 onClick={() => setBusiness(b)}
@@ -88,15 +87,16 @@ export default function PriceCalculator() {
           className="mb-8"
         >
           <p className="text-xs font-bold tracking-widest uppercase text-white/30 mb-3">
-            Servicios que necesitas
+            {c.servicesLabel}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {SERVICES.map((s) => {
-              const active = selected.includes(s.id);
+            {c.services.map((s, i) => {
+              const id = SERVICE_PRICES[i].id;
+              const active = selected.includes(id);
               return (
                 <button
-                  key={s.id}
-                  onClick={() => toggle(s.id)}
+                  key={id}
+                  onClick={() => toggle(id)}
                   className={`p-5 rounded-2xl text-left border-2 transition-all ${
                     active
                       ? 'border-nodo bg-nodo/10'
@@ -107,10 +107,10 @@ export default function PriceCalculator() {
                     {s.label}
                   </p>
                   <p className="text-white/40 text-xs mb-3">{s.desc}</p>
-                  <p className="text-white/25 text-xs font-mono">{s.range} USD</p>
+                  <p className="text-white/25 text-xs font-mono">{SERVICE_PRICES[i].range} USD</p>
                   {active && (
                     <span className="inline-block mt-2 text-xs font-bold text-nodo">
-                      + Seleccionado
+                      {c.selectedTag}
                     </span>
                   )}
                 </button>
@@ -118,9 +118,7 @@ export default function PriceCalculator() {
             })}
           </div>
           {selected.length >= 2 && (
-            <p className="text-nodo text-xs font-bold mt-3">
-              Descuento de 15% por paquete aplicado automaticamente
-            </p>
+            <p className="text-nodo text-xs font-bold mt-3">{c.discount}</p>
           )}
         </motion.div>
 
@@ -137,7 +135,7 @@ export default function PriceCalculator() {
             >
               <div>
                 <p className="text-xs font-bold tracking-widest uppercase text-dark/40 mb-2">
-                  Estimado para {business}
+                  {c.estimateFor} {business}
                 </p>
                 <p className="text-5xl font-black text-dark tracking-tight">
                   ${low.toLocaleString()}
@@ -145,17 +143,15 @@ export default function PriceCalculator() {
                   ${high.toLocaleString()}
                   <span className="text-lg font-bold text-dark/40 ml-2">USD</span>
                 </p>
-                <p className="text-dark/50 text-sm mt-2">
-                  Precio final según alcance exacto. Aceptamos bolívares.
-                </p>
+                <p className="text-dark/50 text-sm mt-2">{c.finalNote}</p>
               </div>
               <a
-                href={WA}
+                href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-dark shrink-0 py-4 px-8 text-base"
               >
-                Cotizar exacto →
+                {c.ctaBtn}
               </a>
             </motion.div>
           ) : (
@@ -166,9 +162,7 @@ export default function PriceCalculator() {
               exit={{ opacity: 0 }}
               className="bg-white/5 rounded-2xl p-8 text-center border border-white/5"
             >
-              <p className="text-white/25 text-sm">
-                Selecciona tu negocio y al menos un servicio para ver el estimado
-              </p>
+              <p className="text-white/25 text-sm">{c.emptyMsg}</p>
             </motion.div>
           )}
         </AnimatePresence>
