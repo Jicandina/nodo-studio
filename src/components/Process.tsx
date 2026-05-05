@@ -1,11 +1,7 @@
 import { motion } from 'framer-motion';
+import { useLang } from '../context/LangContext';
 
-const STEPS = [
-  { num: '01', title: 'Llamada de 30 min',     desc: 'Sin compromiso. Nos cuentas qué vendes, qué te frena, dónde están tus clientes.' },
-  { num: '02', title: 'Propuesta clara',        desc: 'En 48h te enviamos alcance, plazos y precio en bolívares o dólares. Sin letra chica.' },
-  { num: '03', title: 'Construimos juntos',     desc: 'Reuniones cortas cada semana. Ves el avance en vivo, no al final.' },
-  { num: '04', title: 'Lanzamos y acompañamos', desc: 'Te capacitamos, dejamos todo documentado y seguimos disponibles 90 días.' },
-];
+const NUMS = ['01', '02', '03', '04'];
 
 const container = {
   hidden: {},
@@ -18,6 +14,8 @@ const item = {
 };
 
 export default function Process() {
+  const { t } = useLang();
+
   return (
     <section id="proceso" className="py-24 bg-cream dark:bg-dark transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6">
@@ -29,9 +27,9 @@ export default function Process() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <span className="section-label">03 · Cómo trabajamos</span>
+          <span className="section-label">{t.process.label}</span>
           <h2 className="text-5xl md:text-6xl font-black text-dark dark:text-white leading-tight tracking-tight">
-            De la idea<br />al cliente, en 4 pasos.
+            {t.process.heading1}<br />{t.process.heading2}
           </h2>
         </motion.div>
 
@@ -42,14 +40,14 @@ export default function Process() {
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
         >
-          {STEPS.map((step, i) => (
-            <motion.div key={step.num} variants={item} className="relative">
-              {i < STEPS.length - 1 && (
+          {t.process.steps.map((step, i) => (
+            <motion.div key={NUMS[i]} variants={item} className="relative">
+              {i < t.process.steps.length - 1 && (
                 <div className="hidden md:block absolute top-4 left-1/2 w-full h-px bg-dark/15 dark:bg-white/10 z-0" />
               )}
               <div className="relative z-10 pr-8">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-bold text-nodo">{step.num}</span>
+                  <span className="text-xs font-bold text-nodo">{NUMS[i]}</span>
                   <div className="flex-1 h-px bg-dark/15 dark:bg-white/10 md:hidden" />
                 </div>
                 <h3 className="text-lg font-black text-dark dark:text-white mb-2 leading-tight">{step.title}</h3>

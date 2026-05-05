@@ -1,0 +1,236 @@
+export const translations = {
+  es: {
+    header: {
+      nav: ['Servicios', 'Casos', 'Proceso', 'FAQ', 'Contacto'],
+      navHrefs: ['#servicios', '#casos', '#proceso', '#faq', '#contacto'],
+      cta: 'Hablemos →',
+      darkLabel: 'Modo oscuro',
+      lightLabel: 'Modo claro',
+    },
+    hero: {
+      words: ['restaurante', 'clínica', 'inmobiliaria', 'barbería', 'negocio'],
+      eyebrow: 'Agencia Digital · Venezuela · 2026',
+      headline1: 'Tu',
+      headline2: ',',
+      headline3: 'conectado al',
+      headline4: 'mundo digital.',
+      desc: 'Hacemos sitios web, chatbots y herramientas digitales para restaurantes, clínicas, inmobiliarias y barberías que quieren dejar de perder clientes.',
+      cta1: 'Cotiza tu proyecto →',
+      cta2: 'Ver casos',
+    },
+    stats: [
+      { label: 'Negocios activados' },
+      { label: 'Ciudades de Venezuela' },
+      { label: 'Tiempo de respuesta' },
+      { label: 'Hablamos tu idioma' },
+    ],
+    services: {
+      label: '01 · Qué hacemos',
+      heading1: 'Tres servicios.',
+      heading2: 'Cero excusas.',
+      subtitle: 'No vendemos paquetes inflados. Vendemos lo que tu negocio necesita para vender más mañana.',
+      serviceLabel: 'Servicio',
+      items: [
+        {
+          title: 'Sitios web que venden',
+          desc: 'Páginas rápidas, claras y pensadas para que tu cliente reserve, pida o llame en el primer minuto.',
+          features: ['Diseño y desarrollo', 'Mobile-first', 'SEO incluido', 'Dominio y hosting'],
+        },
+        {
+          title: 'Chatbots de WhatsApp',
+          desc: 'Atiende 24/7 sin perder un mensaje. Reserva mesa, agenda cita, responde precios — automático.',
+          features: ['WhatsApp Business API', 'Respuestas automáticas', 'Agenda de citas', 'Notificaciones'],
+        },
+        {
+          title: 'Herramientas a la medida',
+          desc: 'Sistemas internos para tu equipo: control de inventario, agendas, CRMs livianos. Sin códigos imposibles.',
+          features: ['Dashboards', 'Control de inventario', 'CRM simple', 'Reportes automáticos'],
+        },
+      ],
+    },
+    cases: {
+      label: '02 · Casos reales',
+      heading1: 'Negocios venezolanos',
+      heading2: 'que ya están',
+      heading3: 'en línea.',
+      viewProject: 'Ver proyecto →',
+      items: [
+        {
+          type: 'Clínica médica',
+          metricLabel: 'precios actualizados',
+          desc: 'Portal de salud con tasa BCV en tiempo real. Los pacientes ven exactamente cuánto pagan en bolívares ese día. Mapa, horarios y más de 8 especialidades en línea.',
+        },
+        {
+          type: 'Restaurante',
+          metricLabel: 'reservas online',
+          desc: 'Pasaron de tomar pedidos solo por teléfono a un sistema de reservas y delivery por WhatsApp.',
+        },
+        {
+          type: 'Barbería',
+          metricLabel: 'ahorradas en llamadas',
+          desc: 'Sistema de citas online + recordatorios automáticos. Dos sedes, una sola agenda sin confusiones.',
+        },
+      ],
+    },
+    process: {
+      label: '03 · Cómo trabajamos',
+      heading1: 'De la idea',
+      heading2: 'al cliente, en 4 pasos.',
+      steps: [
+        { title: 'Llamada de 30 min',      desc: 'Sin compromiso. Nos cuentas qué vendes, qué te frena, dónde están tus clientes.' },
+        { title: 'Propuesta clara',         desc: 'En 48h te enviamos alcance, plazos y precio en bolívares o dólares. Sin letra chica.' },
+        { title: 'Construimos juntos',      desc: 'Reuniones cortas cada semana. Ves el avance en vivo, no al final.' },
+        { title: 'Lanzamos y acompañamos', desc: 'Te capacitamos, dejamos todo documentado y seguimos disponibles 90 días.' },
+      ],
+    },
+    contact: {
+      label: '04 · Hablemos',
+      heading1: '¿Listos para',
+      heading2: 'conectar tu',
+      heading3: 'negocio?',
+      desc: 'Cuéntanos qué necesitas y te respondemos en menos de 24 horas. Sin formularios eternos, sin call-centers.',
+      waLabel: 'WhatsApp directo',
+      emailLabel: 'Correo',
+      officeLabel: 'Oficina',
+      formTitle: 'Cotización gratuita',
+      successTitle: '¡Abriendo WhatsApp!',
+      successDesc: 'Te respondemos en menos de 24 horas.',
+      fields: {
+        name: { label: 'Tu nombre', placeholder: 'María García' },
+        business: { label: 'Tipo de negocio', placeholder: 'Restaurante, clínica...' },
+        phone: { label: 'WhatsApp', placeholder: '+58 414 000 0000' },
+        message: { label: 'Cuéntanos', placeholder: '¿Qué quieres lograr? ¿Qué te frena hoy?' },
+      },
+      submitBtn: 'Enviar cotización →',
+      waMessage: (name: string, business: string, phone: string, message: string) =>
+        `Hola Nodo Studio! 👋\n\nSoy *${name}*\nNegocio: ${business}\nTeléfono: ${phone}\n\n${message}`,
+    },
+    footer: {
+      tagline: 'Agencia digital · Venezuela · 2026',
+      navTitle: 'Navegación',
+      navItems: ['Servicios', 'Casos', 'Proceso', 'Contacto'],
+      navHrefs: ['servicios', 'casos', 'proceso', 'contacto'],
+      contactTitle: 'Contacto',
+      copyright: '© 2026 Nodo Studio. Todos los derechos reservados.',
+    },
+  },
+
+  en: {
+    header: {
+      nav: ['Services', 'Cases', 'Process', 'FAQ', 'Contact'],
+      navHrefs: ['#servicios', '#casos', '#proceso', '#faq', '#contacto'],
+      cta: "Let's talk →",
+      darkLabel: 'Dark mode',
+      lightLabel: 'Light mode',
+    },
+    hero: {
+      words: ['restaurant', 'clinic', 'real estate', 'barbershop', 'business'],
+      eyebrow: 'Digital Agency · Venezuela · 2026',
+      headline1: 'Your',
+      headline2: ',',
+      headline3: 'connected to the',
+      headline4: 'digital world.',
+      desc: 'We build websites, chatbots and digital tools for restaurants, clinics, real estate agencies and barbershops that want to stop losing customers.',
+      cta1: 'Get a quote →',
+      cta2: 'View cases',
+    },
+    stats: [
+      { label: 'Businesses launched' },
+      { label: 'Cities in Venezuela' },
+      { label: 'Response time' },
+      { label: 'We speak your language' },
+    ],
+    services: {
+      label: '01 · What we do',
+      heading1: 'Three services.',
+      heading2: 'Zero excuses.',
+      subtitle: "We don't sell bloated packages. We sell what your business needs to sell more tomorrow.",
+      serviceLabel: 'Service',
+      items: [
+        {
+          title: 'Websites that sell',
+          desc: 'Fast, clear pages designed so your customer books, orders or calls within the first minute.',
+          features: ['Design & development', 'Mobile-first', 'SEO included', 'Domain & hosting'],
+        },
+        {
+          title: 'WhatsApp Chatbots',
+          desc: 'Answer 24/7 without missing a message. Book tables, schedule appointments, reply to pricing — automated.',
+          features: ['WhatsApp Business API', 'Automated replies', 'Appointment scheduling', 'Notifications'],
+        },
+        {
+          title: 'Custom-built tools',
+          desc: 'Internal systems for your team: inventory control, schedules, lightweight CRMs. No impossible code.',
+          features: ['Dashboards', 'Inventory control', 'Simple CRM', 'Automated reports'],
+        },
+      ],
+    },
+    cases: {
+      label: '02 · Real cases',
+      heading1: 'Venezuelan businesses',
+      heading2: 'already',
+      heading3: 'online.',
+      viewProject: 'View project →',
+      items: [
+        {
+          type: 'Medical clinic',
+          metricLabel: 'live pricing',
+          desc: 'Health portal with real-time exchange rate. Patients see exactly what they pay that day. Map, hours and 8+ specialties online.',
+        },
+        {
+          type: 'Restaurant',
+          metricLabel: 'online bookings',
+          desc: 'They went from phone-only orders to a full WhatsApp reservation and delivery system.',
+        },
+        {
+          type: 'Barbershop',
+          metricLabel: 'saved on calls',
+          desc: 'Online appointment system + automatic reminders. Two locations, one seamless schedule.',
+        },
+      ],
+    },
+    process: {
+      label: '03 · How we work',
+      heading1: 'From idea',
+      heading2: 'to customer, in 4 steps.',
+      steps: [
+        { title: '30-min call',          desc: "No commitment. Tell us what you sell, what's holding you back, where your customers are." },
+        { title: 'Clear proposal',        desc: 'Within 48h we send scope, timeline and price in bolivars or dollars. No fine print.' },
+        { title: 'We build together',     desc: 'Short weekly meetings. You see progress live, not just at the end.' },
+        { title: 'We launch & support',  desc: 'We train you, document everything and stay available for 90 days.' },
+      ],
+    },
+    contact: {
+      label: '04 · Contact',
+      heading1: 'Ready to',
+      heading2: 'connect your',
+      heading3: 'business?',
+      desc: "Tell us what you need and we'll reply within 24 hours. No endless forms, no call centers.",
+      waLabel: 'Direct WhatsApp',
+      emailLabel: 'Email',
+      officeLabel: 'Office',
+      formTitle: 'Free quote',
+      successTitle: 'Opening WhatsApp!',
+      successDesc: "We'll reply within 24 hours.",
+      fields: {
+        name: { label: 'Your name', placeholder: 'John Smith' },
+        business: { label: 'Business type', placeholder: 'Restaurant, clinic...' },
+        phone: { label: 'WhatsApp', placeholder: '+1 305 000 0000' },
+        message: { label: 'Tell us', placeholder: "What do you want to achieve? What's holding you back?" },
+      },
+      submitBtn: 'Send quote →',
+      waMessage: (name: string, business: string, phone: string, message: string) =>
+        `Hi Nodo Studio! 👋\n\nI'm *${name}*\nBusiness: ${business}\nPhone: ${phone}\n\n${message}`,
+    },
+    footer: {
+      tagline: 'Digital agency · Venezuela · 2026',
+      navTitle: 'Navigation',
+      navItems: ['Services', 'Cases', 'Process', 'Contact'],
+      navHrefs: ['servicios', 'casos', 'proceso', 'contacto'],
+      contactTitle: 'Contact',
+      copyright: '© 2026 Nodo Studio. All rights reserved.',
+    },
+  },
+} as const;
+
+export type Lang = 'es' | 'en';
+export type Translations = typeof translations.es;

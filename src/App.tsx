@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { LangProvider } from './context/LangContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
@@ -34,6 +35,7 @@ function MainPage() {
 
 export default function App() {
   return (
+    <LangProvider>
     <BrowserRouter>
       <LoadingScreen />
       <ScrollProgress />
@@ -44,5 +46,6 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+    </LangProvider>
   );
 }

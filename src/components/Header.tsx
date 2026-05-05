@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useDarkMode } from '../hooks/useDarkMode';
-
-const NAV = [
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Casos',     href: '#casos' },
-  { label: 'Proceso',   href: '#proceso' },
-  { label: 'FAQ',       href: '#faq' },
-  { label: 'Contacto',  href: '#contacto' },
-];
+import { useLang } from '../context/LangContext';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobile, setMobile]     = useState(false);
-  const { dark, toggle }        = useDarkMode();
+  const { dark, toggle: toggleDark } = useDarkMode();
+  const { lang, t, toggle: toggleLang } = useLang();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
@@ -36,24 +30,31 @@ export default function Header() {
         <img src="/logo-horizontal.png" alt="Nodo Studio" className="h-14 w-auto dark:invert" />
 
         <nav className="hidden md:flex items-center gap-8">
-          {NAV.map((link) => (
-            <button key={link.href} onClick={() => scrollTo(link.href)}
+          {t.header.nav.map((label, i) => (
+            <button key={label} onClick={() => scrollTo(t.header.navHrefs[i])}
               className="text-sm font-medium text-dark/70 dark:text-white/60 hover:text-dark dark:hover:text-white transition-colors">
-              {link.label}
+              {label}
             </button>
           ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
           <button
-            onClick={toggle}
+            onClick={toggleLang}
+            className="w-12 h-9 rounded-xl border border-dark/15 dark:border-white/15 flex items-center justify-center text-xs font-black text-dark/50 dark:text-white/50 hover:text-dark dark:hover:text-white transition-colors tracking-wider"
+            aria-label="Toggle language"
+          >
+            {lang === 'es' ? 'EN' : 'ES'}
+          </button>
+          <button
+            onClick={toggleDark}
             className="w-9 h-9 rounded-xl border border-dark/15 dark:border-white/15 flex items-center justify-center text-dark/50 dark:text-white/50 hover:text-dark dark:hover:text-white transition-colors"
             aria-label="Toggle dark mode"
           >
             {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
           <button onClick={() => scrollTo('#contacto')} className="btn-dark">
-            Hablemos →
+            {t.header.cta}
           </button>
         </div>
 
@@ -64,20 +65,24 @@ export default function Header() {
 
       {mobile && (
         <div className="md:hidden bg-cream dark:bg-dark border-t border-dark/10 dark:border-white/10 px-6 py-4 space-y-1">
-          {NAV.map((link) => (
-            <button key={link.href} onClick={() => scrollTo(link.href)}
+          {t.header.nav.map((label, i) => (
+            <button key={label} onClick={() => scrollTo(t.header.navHrefs[i])}
               className="block w-full text-left px-4 py-3 text-sm font-medium text-dark dark:text-white hover:bg-dark/5 dark:hover:bg-white/5 rounded-xl transition-colors">
-              {link.label}
+              {label}
             </button>
           ))}
           <div className="pt-2 flex gap-2">
-            <button onClick={toggle}
+            <button onClick={toggleLang}
+              className="flex-1 flex items-center justify-center px-4 py-3 border border-dark/15 dark:border-white/15 rounded-xl text-sm font-black text-dark dark:text-white">
+              {lang === 'es' ? 'EN' : 'ES'}
+            </button>
+            <button onClick={toggleDark}
               className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-dark/15 dark:border-white/15 rounded-xl text-sm font-medium text-dark dark:text-white">
               {dark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              {dark ? 'Modo claro' : 'Modo oscuro'}
+              {dark ? t.header.lightLabel : t.header.darkLabel}
             </button>
             <button onClick={() => scrollTo('#contacto')} className="btn-dark flex-1 justify-center">
-              Hablemos →
+              {t.header.cta}
             </button>
           </div>
         </div>

@@ -1,29 +1,9 @@
 import { motion } from 'framer-motion';
 import TiltCard from './TiltCard';
+import { useLang } from '../context/LangContext';
 
-const SERVICES = [
-  {
-    num: '01',
-    title: 'Sitios web que venden',
-    desc: 'Páginas rápidas, claras y pensadas para que tu cliente reserve, pida o llame en el primer minuto.',
-    features: ['Diseño y desarrollo', 'Mobile-first', 'SEO incluido', 'Dominio y hosting'],
-    highlight: false,
-  },
-  {
-    num: '02',
-    title: 'Chatbots de WhatsApp',
-    desc: 'Atiende 24/7 sin perder un mensaje. Reserva mesa, agenda cita, responde precios — automático.',
-    features: ['WhatsApp Business API', 'Respuestas automáticas', 'Agenda de citas', 'Notificaciones'],
-    highlight: true,
-  },
-  {
-    num: '03',
-    title: 'Herramientas a la medida',
-    desc: 'Sistemas internos para tu equipo: control de inventario, agendas, CRMs livianos. Sin códigos imposibles.',
-    features: ['Dashboards', 'Control de inventario', 'CRM simple', 'Reportes automáticos'],
-    highlight: false,
-  },
-];
+const NUMS = ['01', '02', '03'];
+const HIGHLIGHTS = [false, true, false];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -35,6 +15,8 @@ const fadeUp = {
 };
 
 export default function Services() {
+  const { t } = useLang();
+
   return (
     <section id="servicios" className="py-24 bg-cream dark:bg-dark transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6">
@@ -47,20 +29,20 @@ export default function Services() {
           className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16"
         >
           <div>
-            <span className="section-label">01 · Qué hacemos</span>
+            <span className="section-label">{t.services.label}</span>
             <h2 className="text-5xl md:text-6xl font-black text-dark dark:text-white leading-tight tracking-tight">
-              Tres servicios.<br />Cero excusas.
+              {t.services.heading1}<br />{t.services.heading2}
             </h2>
           </div>
           <p className="text-dark/50 dark:text-white/40 max-w-xs text-base leading-relaxed">
-            No vendemos paquetes inflados. Vendemos lo que tu negocio necesita para vender más mañana.
+            {t.services.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {SERVICES.map((s, i) => (
+          {t.services.items.map((s, i) => (
             <motion.div
-              key={s.num}
+              key={NUMS[i]}
               custom={i}
               variants={fadeUp}
               initial="hidden"
@@ -68,24 +50,24 @@ export default function Services() {
               viewport={{ once: true, margin: '-60px' }}
             >
               <TiltCard className={`rounded-2xl p-8 flex flex-col gap-6 h-full ${
-                s.highlight
+                HIGHLIGHTS[i]
                   ? 'bg-nodo text-white'
                   : 'bg-cream-dark dark:bg-dark-800 border border-dark/10 dark:border-white/10'
               }`}>
                 <div className="flex items-start justify-between">
-                  <p className={`text-xs font-bold tracking-widest uppercase ${s.highlight ? 'text-white/60' : 'text-dark/40 dark:text-white/30'}`}>
-                    {s.num} · Servicio
+                  <p className={`text-xs font-bold tracking-widest uppercase ${HIGHLIGHTS[i] ? 'text-white/60' : 'text-dark/40 dark:text-white/30'}`}>
+                    {NUMS[i]} · {t.services.serviceLabel}
                   </p>
                   <div className={`w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm ${
-                    s.highlight ? 'bg-dark text-white' : 'bg-nodo text-white'
+                    HIGHLIGHTS[i] ? 'bg-dark text-white' : 'bg-nodo text-white'
                   }`}>N</div>
                 </div>
 
                 <div>
-                  <h3 className={`text-2xl font-black leading-tight mb-3 ${s.highlight ? 'text-white' : 'text-dark dark:text-white'}`}>
+                  <h3 className={`text-2xl font-black leading-tight mb-3 ${HIGHLIGHTS[i] ? 'text-white' : 'text-dark dark:text-white'}`}>
                     {s.title}
                   </h3>
-                  <p className={`text-sm leading-relaxed ${s.highlight ? 'text-white/70' : 'text-dark/60 dark:text-white/50'}`}>
+                  <p className={`text-sm leading-relaxed ${HIGHLIGHTS[i] ? 'text-white/70' : 'text-dark/60 dark:text-white/50'}`}>
                     {s.desc}
                   </p>
                 </div>
@@ -93,9 +75,9 @@ export default function Services() {
                 <ul className="space-y-2 mt-auto">
                   {s.features.map((f) => (
                     <li key={f} className={`flex items-center gap-2 text-sm font-medium ${
-                      s.highlight ? 'text-white/80' : 'text-dark/70 dark:text-white/60'
+                      HIGHLIGHTS[i] ? 'text-white/80' : 'text-dark/70 dark:text-white/60'
                     }`}>
-                      <span className={`text-xs ${s.highlight ? 'text-white/50' : 'text-nodo'}`}>+</span>
+                      <span className={`text-xs ${HIGHLIGHTS[i] ? 'text-white/50' : 'text-nodo'}`}>+</span>
                       {f}
                     </li>
                   ))}

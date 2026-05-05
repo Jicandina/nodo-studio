@@ -1,24 +1,29 @@
 import { lazy, Suspense, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLang } from '../context/LangContext';
 
 const NodeCanvas = lazy(() => import('./NodeCanvas'));
 
-const WORDS = ['restaurante', 'clínica', 'inmobiliaria', 'barbería', 'negocio'];
-
-function useTypewriter() {
+function useTypewriter(words: readonly string[]) {
   const [text, setText] = useState('');
   const [wordIdx, setWordIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const word = WORDS[wordIdx];
+    setText('');
+    setWordIdx(0);
+    setDeleting(false);
+  }, [words]);
+
+  useEffect(() => {
+    const word = words[wordIdx];
     let timeout: ReturnType<typeof setTimeout>;
 
     if (!deleting && text === word) {
       timeout = setTimeout(() => setDeleting(true), 1800);
     } else if (deleting && text === '') {
       setDeleting(false);
-      setWordIdx((i) => (i + 1) % WORDS.length);
+      setWordIdx((i) => (i + 1) % words.length);
     } else if (deleting) {
       timeout = setTimeout(() => setText(text.slice(0, -1)), 40);
     } else {
@@ -26,13 +31,14 @@ function useTypewriter() {
     }
 
     return () => clearTimeout(timeout);
-  }, [text, deleting, wordIdx]);
+  }, [text, deleting, wordIdx, words]);
 
   return text;
 }
 
 export default function Hero() {
-  const typed = useTypewriter();
+  const { t } = useLang();
+  const typed = useTypewriter(t.hero.words);
 
   const scrollToContact = () =>
     document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' });
@@ -53,7 +59,7 @@ export default function Hero() {
             >
               <div className="w-2 h-2 rounded-full bg-nodo" />
               <span className="text-xs font-bold tracking-widest uppercase text-dark/50 dark:text-white/40">
-                Agencia Digital · Venezuela · 2026
+                {t.hero.eyebrow}
               </span>
             </motion.div>
 
@@ -63,14 +69,14 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-6xl md:text-7xl font-black text-dark dark:text-white leading-[1.0] mb-6 tracking-tight"
             >
-              Tu{' '}
+              {t.hero.headline1}{' '}
               <span className="text-nodo">
                 {typed}
                 <span className="animate-pulse">|</span>
               </span>
-              ,<br />
-              conectado al<br />
-              mundo digital.
+              {t.hero.headline2}<br />
+              {t.hero.headline3}<br />
+              {t.hero.headline4}
             </motion.h1>
 
             <motion.p
@@ -79,9 +85,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.35 }}
               className="text-lg text-dark/60 dark:text-white/50 mb-10 leading-relaxed max-w-lg"
             >
-              Hacemos sitios web, chatbots y herramientas digitales para
-              restaurantes, clínicas, inmobiliarias y barberías que quieren
-              dejar de perder clientes por WhatsApp.
+              {t.hero.desc}
             </motion.p>
 
             <motion.div
@@ -91,10 +95,10 @@ export default function Hero() {
               className="flex flex-wrap gap-4"
             >
               <button onClick={scrollToContact} className="btn-dark text-base px-8 py-4">
-                Cotiza tu proyecto →
+                {t.hero.cta1}
               </button>
               <button onClick={scrollToCases} className="btn-outline dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-dark text-base px-8 py-4">
-                Ver casos
+                {t.hero.cta2}
               </button>
             </motion.div>
           </div>

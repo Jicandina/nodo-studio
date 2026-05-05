@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
+import { useLang } from '../context/LangContext';
 
-const STATS = [
-  { label: 'Negocios activados',    num: 10,  suffix: '+' },
-  { label: 'Ciudades de Venezuela', num: 5,   suffix: ''  },
-  { label: 'Tiempo de respuesta',   num: 24,  suffix: 'h' },
-  { label: 'Hablamos tu idioma',    num: 100, suffix: '%' },
+const NUMS = [
+  { num: 10,  suffix: '+' },
+  { num: 5,   suffix: ''  },
+  { num: 24,  suffix: 'h' },
+  { num: 100, suffix: '%' },
 ];
 
 function AnimatedNumber({ num, suffix }: { num: number; suffix: string }) {
@@ -39,6 +40,8 @@ const item = {
 };
 
 export default function Stats() {
+  const { t } = useLang();
+
   return (
     <section className="bg-cream dark:bg-dark-800 border-t border-b border-dark/10 dark:border-white/10 py-14 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6">
@@ -49,10 +52,12 @@ export default function Stats() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {STATS.map(({ label, num, suffix }) => (
-            <motion.div key={label} variants={item} className="text-center md:text-left">
+          {NUMS.map(({ num, suffix }, i) => (
+            <motion.div key={i} variants={item} className="text-center md:text-left">
               <AnimatedNumber num={num} suffix={suffix} />
-              <p className="text-xs font-bold tracking-widest uppercase text-dark/40 dark:text-white/40 mt-1">{label}</p>
+              <p className="text-xs font-bold tracking-widest uppercase text-dark/40 dark:text-white/40 mt-1">
+                {t.stats[i].label}
+              </p>
             </motion.div>
           ))}
         </motion.div>
