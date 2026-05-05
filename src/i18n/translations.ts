@@ -148,6 +148,14 @@ export const translations = {
       contactTitle: 'Contacto',
       copyright: '© 2026 Nodo Studio. Todos los derechos reservados.',
     },
+    exitPopup: {
+      eyebrow: 'Espera un momento',
+      heading: '¿Te vas sin\ncotizar?',
+      desc: 'Cuéntanos qué necesitas y te respondemos hoy mismo. Sin compromiso, sin letra chica.',
+      cta: 'Cotizar ahora →',
+      dismiss: 'No, gracias',
+      waMsg: 'Hola!%20Vi%20Nodo%20Studio%20y%20quiero%20una%20cotización%20%F0%9F%91%8B',
+    },
   },
 
   en: {
@@ -298,6 +306,14 @@ export const translations = {
       navHrefs: ['servicios', 'casos', 'proceso', 'contacto'],
       contactTitle: 'Contact',
       copyright: '© 2026 Nodo Studio. All rights reserved.',
+    },
+    exitPopup: {
+      eyebrow: 'Wait a moment',
+      heading: 'Leaving without\na quote?',
+      desc: "Tell us what you need and we'll get back to you today. No commitment, no fine print.",
+      cta: 'Get a quote →',
+      dismiss: 'No thanks',
+      waMsg: 'Hi!%20I%20saw%20Nodo%20Studio%20and%20want%20a%20quote%20%F0%9F%91%8B',
     },
   },
 };

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const WA = 'https://wa.me/584242677904?text=Hola!%20Vi%20Nodo%20Studio%20y%20quiero%20una%20cotizaci%C3%B3n%20%F0%9F%91%8B';
+import { useLang } from '../context/LangContext';
 
 export default function ExitPopup() {
+  const { t } = useLang();
+  const p = t.exitPopup;
+
   const [show, setShow] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -33,6 +35,8 @@ export default function ExitPopup() {
     setDone(true);
   };
 
+  const waUrl = `https://wa.me/584242677904?text=${p.waMsg}`;
+
   return (
     <AnimatePresence>
       {show && (
@@ -52,27 +56,25 @@ export default function ExitPopup() {
             className="bg-cream rounded-2xl p-8 max-w-md w-full"
           >
             <div className="w-10 h-10 bg-nodo rounded-xl flex items-center justify-center font-black text-white mb-4">N</div>
-            <p className="text-xs font-bold tracking-widest uppercase text-nodo mb-2">Espera un momento</p>
-            <h2 className="text-3xl font-black text-dark mb-3 leading-tight">
-              ¿Te vas sin<br />cotizar?
+            <p className="text-xs font-bold tracking-widest uppercase text-nodo mb-2">{p.eyebrow}</p>
+            <h2 className="text-3xl font-black text-dark mb-3 leading-tight whitespace-pre-line">
+              {p.heading}
             </h2>
-            <p className="text-dark/60 mb-6 leading-relaxed">
-              Cuéntanos qué necesitas y te respondemos hoy mismo. Sin compromiso, sin letra chica.
-            </p>
+            <p className="text-dark/60 mb-6 leading-relaxed">{p.desc}</p>
             <a
-              href={WA}
+              href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={close}
               className="btn-dark w-full justify-center py-4 text-base"
             >
-              Cotizar ahora →
+              {p.cta}
             </a>
             <button
               onClick={close}
               className="mt-3 text-xs text-dark/40 hover:text-dark/70 transition-colors w-full text-center py-2"
             >
-              No, gracias
+              {p.dismiss}
             </button>
           </motion.div>
         </motion.div>
